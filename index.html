@@ -3,23 +3,24 @@
 	<title> Welcome </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/lib/jquery.js"></script>
 	<script type="text/javascript" src="js/test.js"></script>
 </head>
 <body>
 	<div class="container"> <!-- Start Container -->
-		<input type="text" placeholder="Enter Problem" class="problem" id="problem"> <br /><br />
-	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-			
-			<p style="border: 1px solid black">Hello this is another test. I think that is a great idea to do owhat I need to do .</p>
+		<div class="problem-container">
+			<input type="text" aria-multiline="true" placeholder="Enter Problem" class="problem-title" id="problem-title">
+
+			<textarea placeholder="Enter Problem" class="problem-detail" rows="1" ></textarea>
+			<div class="problem-options"> <button type="button" class="problem-submit"> Done </button> | Option2 | Option 3 </div>
 		</div>
+		<div class="row">
+			<!-- Jquery appends to this div for now -->
+		</div> <!-- Row End -->
 
 
-	</div> <!-- Row End -->
-
-
-</div> <!-- End container -->
+	</div> <!-- End container -->
 
 </body>
 
