@@ -5,6 +5,11 @@
 	- Use database?
 	- Ability to save issues logged
 	- Try to make as feature rich as google keep
+		- grid system
+		- change colors
+		- archive issues?
+	- When typing in a users name you have the option to look them up in agent database
+		- {style} Side panel that slides in from the right showing agent info. How will I make this responsive?
 + Trivial Knowlege Base
 	- Ability to access knowlege base on the fly
 
@@ -14,6 +19,8 @@
 - Incoming/outgoing agents
 	- Import informarion using a spreadsheet or plaintext
 	- Cycle through websites involved in add/remove agents
+
+- Admin Login that allows yout
 
 
 
