@@ -1,0 +1,22 @@
+- Agent directory
+- Links to various printers + driver links
+
+- Issue logging
+	- Use database?
+	- Ability to save issues logged
+	- Try to make as feature rich as google keep
++ Trivial Knowlege Base
+	- Ability to access knowlege base on the fly
+
+- Most used websites
+	- Ability to add/remove favorites websites
+- Email logged issues 
+- Incoming/outgoing agents
+	- Import informarion using a spreadsheet or plaintext
+	- Cycle through websites involved in add/remove agents
+
+
+
+Things I may need to learn
+- AJAX using post to submit a form
+- Loading screen and animations
