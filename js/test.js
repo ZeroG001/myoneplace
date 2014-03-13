@@ -1,6 +1,10 @@
 $(document).ready(function(){
-	$('.problem').click(function(event) {
-		
+	$('.problem').keyup(function (event) {
+		console.log(event.which);
+
+		if (event.which == 13) {
+			$('body').append("<p> hello </p>");
+		};
 	});
 
 });
