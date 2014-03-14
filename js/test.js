@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+	$('.problem-title').click(function(){
+		$('.problem-detail').show();
+	});
 
 	$('.problem-detail').keyup(function (event){
 		// var apples = $('.problem-detail').val().split(/(\n|\r)/);
@@ -19,6 +22,17 @@ $(document).ready(function () {
 		// 	$(".problem-detail").height(apples.length*19+"px");
 		// }
 	});
+
+	// var xhr = new XMLHttpRequest();
+
+	// xhr.onreadystatechange = function() {
+	// 	if (xhr.status == 200) {
+	// 		document.getElementById("body").innerHTML = xhr.requestText
+	// 	}
+	// }
+
+	// xhr.open("GET", "test.html", true);
+	// xhr.send();
 
 	$('.problem-submit').click(function() {
 

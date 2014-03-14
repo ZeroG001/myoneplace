@@ -4,3 +4,27 @@ textarea {
 	resize: none;
 	overflow: hidden;
 }
+
+.problem-container {
+	width: 500px;
+	margin: 50px auto;
+	border: 1px solid black;
+	padding: 20px;
+}
+
+.problem-container input, .problem-container textarea {
+	border-width: 0px;
+
+}
+
+.problem-detail {
+	display: none;
+}
+
+input:focus {
+	outline: none;
+}
+
+
+
+
