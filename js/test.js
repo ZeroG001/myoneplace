@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+	// =====================Problem input box ===================
+	// this section defines the input box and its bahaviour when 
+	// writing to it.
+
 	$('.problem-title').click(function(){
 		$('.problem-detail').show();
 	});
@@ -12,7 +16,7 @@ $(document).ready(function () {
 		var heightvalue = $(".problem-detail").height();
 	
 			$(".problem-detail").height(heightvalue+topvalue+"px");
-			console.log("teok");
+
 
 		// if (event.which == 13) {
 		// 	$(".problem-detail").height(apples.length*19+"px");
@@ -34,11 +38,19 @@ $(document).ready(function () {
 	// xhr.open("GET", "test.html", true);
 	// xhr.send();
 
+
+
 	$('.problem-submit').click(function() {
 
-			
-			$('.row').append("<div class='col-xs-6 col-sm-6 col-md-4 col-lg-4' style='border: 1px solid black'>" + $('.problem-detail').val() + "</div>");
-		
+			$('.saved-note').prepend("<div class='col-xs-6 col-sm-6 col-md-4 col-lg-4'>"
+				+"<div class='note-title'> notetitle </div>"
+				+"<div class='note-detail'> note detail</div>"
+				+"<div class='note-options'> Note1 | Options2 | Option3 </div>"
+				+"</div>");
+			$('.saved-note > .note-detail:first-child').text($('.problem-detail').val());
+
 	});
+
+	// ================Problem input box end===================
 
 });

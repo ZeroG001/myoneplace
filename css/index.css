@@ -21,6 +21,11 @@ textarea {
 	display: none;
 }
 
+.saved-note > div {
+	margin-top: 40px;
+	background-color:#838C80;
+}
+
 input:focus {
 	outline: none;
 }
