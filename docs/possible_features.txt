@@ -27,3 +27,9 @@
 Things I may need to learn
 - AJAX using post to submit a form
 - Loading screen and animations
+
+
+How is the note information going to be saved?
+- Im going to use AJAX
+	- When the user is finished with the note, it is indexed. and the contents of the note is sent to another page using AJAX. I might call the page process.php.
+	- When the page reloads or stars up, it puts the information into an array.
