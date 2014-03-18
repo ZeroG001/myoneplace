@@ -1,9 +1,23 @@
 
+body {
+	font-family: monospace;
+}
+
+
 
 textarea {
 	resize: none;
 	overflow: hidden;
+	outline: none;
+	border:none !important;
+	box-shadow: none !important;
 }
+
+input {
+	outline: none;
+	border:none !important;
+	box-shadow: none !important;
+} 
 
 .problem-container {
 	width: 500px;
@@ -17,12 +31,36 @@ textarea {
 
 }
 
+/* Add padding to the inside of the note details */
+.note-title, .note-options {
+	padding: 10px 10px 0px 10px;
+}
+
+
 .problem-detail {
 	display: none;
 }
 
+/* This unstyleizes the pre from bootstrap */
+.note-detail {
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+	background-color: inherit;
+	border: 0px;
+	border-radius: 0px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	padding: 0px 10px;
+
+}
+
 .saved-note > div {
-	margin-top: 40px;
+	padding: 10px;
+	
+}
+
+.note-wrapper {
 	background-color:#838C80;
 }
 
@@ -30,6 +68,14 @@ input:focus {
 	outline: none;
 }
 
+/*media queries*/
+
+@media screen and (max-width: 767px)  {
+	.problem-container {
+		width: 100%;
+	}
+
+}
 
 
 
