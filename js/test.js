@@ -11,6 +11,14 @@ $(document).ready(function () {
 		$('.problem-options').show();
 	});
 
+	$('.problem-title').focus(function(){
+		$('.problem-detail').show();
+		$('.problem-options').show();
+	});
+
+
+
+
 	/* Jquery plugin that autosizes textareas (thanks github) */
 	$('.problem-detail').autosize();
 
@@ -62,12 +70,14 @@ $(document).ready(function () {
 
 				//Porblem. Trying to make it so that when you hover ove a box, the option box appears.
 				$('.note-container').hover(function(){
-					alert(this);
-					$('.note-container .note-options').css('visibility', 'visible');
-				}, function(){
-					$('.note-options').css('visibility','hidden');
+					$(".note-options",this).css("visibility","visible");
+					return false;
+				},function(){
+					$(".note-options",this).css("visibility","hidden");
+					return false;
 				});
-				return false;
+					
+				
 
 
 				//RUN AJAX REQUEST TO PROCESSOR PAGE.
