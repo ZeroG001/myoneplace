@@ -1,5 +1,24 @@
 $(document).ready(function () {
 
+	/* Ajax Test */
+$(".goajax").click(function(){
+	alert("clicked");
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange=function() {
+		if (xhr.status === 200) {
+			alert("okok");
+		}
+	}
+	xhr.open("GET", "test.html", true);
+	xhr.send();
+
+
+});
+	
+	/* Ajax test end */
+
 	
 
 	// =====================Problem input box ===================
@@ -102,7 +121,7 @@ $("body:not(input)").click(function(e){
 				$('.problem-detail').height("20px");
 				$('.problem-detail').css("display","none");
 				$('.problem-options').css("display","none");
-				return false;
+				
 
 				//DON'T RUN AJAX REQUEST TO PROCESSOR PAGE
 
@@ -125,7 +144,7 @@ $("body:not(input)").click(function(e){
 				$('.problem-detail').height("20px");
 				$('.problem-detail').css("display","none");
 				$('.problem-options').css("display","none");
-				return false;
+				
 
 				//RUN AJAX REQUEST TO PROCESSOR PAGE
 			}
