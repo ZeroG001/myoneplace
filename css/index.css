@@ -38,6 +38,7 @@ input {
 /* Add padding to the inside of the note details */
 .note-title, .note-options {
 	padding: 10px 10px 0px 10px;
+	font-size: 17px;
 }
 
  .note-options {
