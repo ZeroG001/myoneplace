@@ -1,23 +1,14 @@
 $(document).ready(function () {
 
 	/* Ajax Test */
-$(".goajax").click(function(){
-	alert("clicked");
+$(".problem-submit").click(function(){
 
-	var xhr = new XMLHttpRequest();
 
-	xhr.onreadystatechange=function() {
-		if (xhr.status === 200) {
-			alert("okok");
-		}
-	}
-	xhr.open("GET", "test.html", true);
-	xhr.send();
 
 
 });
 	
-	/* Ajax test end */
+	/* Ajax tests end */
 
 	
 
@@ -67,6 +58,26 @@ $(".goajax").click(function(){
 				//DON'T RUN AJAX REQUEST TO PROCESSOR PAGE
 
 			} else {
+
+// =============== ajax start =================
+
+			var problem_detail = $('.problem-detail').val();
+var problem_title = $('.problem-title').val();
+	
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange=function() {
+		if (xhr.status === 200) {
+			document.getElementById("status-container").innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("POST", "resources/config.php", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send("title="+problem_title+"&detail="+problem_detail+"");
+	/* ============== AJAX END ================ */
+
+
 				$('.saved-note').prepend("<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
 					+"<div class='note-wrapper'>"
 				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
