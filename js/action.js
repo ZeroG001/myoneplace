@@ -61,34 +61,42 @@ $(".problem-submit").click(function(){
 
 // =============== ajax start =================
 
-			var problem_detail = $('.problem-detail').val();
-var problem_title = $('.problem-title').val();
+	var problem_detail = $('.problem-detail').val();
+	var problem_title = $('.problem-title').val();
 	
 
 	var xhr = new XMLHttpRequest();
 
 	xhr.onreadystatechange=function() {
-		if (xhr.status === 200) {
-			document.getElementById("status-container").innerHTML = xhr.responseText;
-		}
-	}
-	xhr.open("POST", "resources/config.php", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send("title="+problem_title+"&detail="+problem_detail+"");
-	/* ============== AJAX END ================ */
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// document.getElementById("status-container").innerHTML = xhr.responseText;
 
+			alert(xhr.responseText);
+			//Put actions on what to do affter the DATA has AJAXed.
 
-				$('.saved-note').prepend("<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div class='note-wrapper'>"
+			$('.saved-note').prepend("<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+					+"<div id='"+xhr.responseText+"' class='note-wrapper'>"
 				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
 				+"<div class='note-detail'><pre> detail</pre></div>" //not details are generated here
 				+"<div class='note-options'> Color | Archive | <div class='delete-note'> <div> </div>"
 				+"</div>"
 				+"</div>");
 
-				// Escape Input
-				$('.saved-note > div:first-child > .note-wrapper > .note-detail').text($('.problem-detail').val());
-				$('.saved-note > div:first-child > .note-wrapper > .note-title strong').text($('.problem-title').val());
+			// Escape Input
+				$('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
+				$('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
+		}
+
+	}
+	xhr.open("POST", "resources/add_note.php", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send("title="+problem_title+"&detail="+problem_detail+"");
+	/* ============== AJAX END ================ */
+
+
+				
+
+				
 
 				// Clear Contents
 				$('.problem-title').val("");

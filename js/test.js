@@ -72,7 +72,7 @@ var problem_title = $('.problem-title').val();
 			document.getElementById("status-container").innerHTML = xhr.responseText;
 		}
 	}
-	xhr.open("POST", "resources/config.php", true);
+	xhr.open("POST", "resources/add_note.php", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send("title="+problem_title+"&detail="+problem_detail+"");
 	/* ============== AJAX END ================ */
