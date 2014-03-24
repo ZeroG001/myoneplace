@@ -73,6 +73,10 @@ input {
 	background-color:#838C80;
 }
 
+.delete_note {
+	background-color: tomato;
+}
+
 input:focus {
 	outline: none;
 }
