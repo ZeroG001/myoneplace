@@ -50,13 +50,7 @@ var note = {};
 //This will clear the contents of each input box and hide the textarea box.
 //Just like in google keep
 
-note.html = "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div id='' class='note-wrapper'>"
-				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
-				+"<div class='note-detail'><pre> detail</pre></div>" //not details are generated here
-				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
-				+"</div>"
-				+"</div>"
+note.addNote =
 
 
 //When the ussr click the input box. the program will expand the textarea box
@@ -69,7 +63,21 @@ note.deleteNote = function(){
 }
 
 //Adds note to the main page
-note.addNote = function(){
+note.addNote = function(textarea){
+
+	var inputValue = $("<h1></h1>").text("<h1> Hello </h1>").html();
+	var textareaValue;
+	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+					+"<div id='' class='note-wrapper'>"
+				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
+				+"<div class='note-detail'><pre>"+inputValue+"</pre></div>" //not details are generated here
+				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
+				+"</div>"
+				+"</div>";
+
+				console.log("returning html");
+
+				return html;
 
 }
 
@@ -138,11 +146,11 @@ $("body:not(input)").click(function(e){
 			alert(xhr.responseText);
 			//Put actions on what to do affter the DATA has AJAXed.
 
-			$('.saved-note').prepend(note.html);
+			$('.saved-note').prepend(note.addNote);
 
 			// Escape Input
-				$('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
-				$('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
+				// $('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
+				// $('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
 
 				$('.note-container').hover(function(){
 					$(".note-options",this).css("visibility","visible");
