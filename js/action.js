@@ -52,6 +52,17 @@ noteForm.showContents = function(){
 
 var note = {};
 
+<<<<<<< HEAD
+=======
+//Note 
+
+
+//This will clear the contents of each input box and hide the textarea box.
+//Just like in google keep
+
+note.addNote =
+
+>>>>>>> 517d27cbaacf47e6e95353d824537f19912f9762
 
 //When the ussr click the input box. the program will expand the textarea box
 note.showContents = function(){
@@ -63,7 +74,21 @@ note.deleteNote = function(){
 }
 
 //Adds note to the main page
-note.addNote = function(){
+note.addNote = function(textarea){
+
+	var inputValue = $("<h1></h1>").text("<h1> Hello </h1>").html();
+	var textareaValue;
+	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+					+"<div id='' class='note-wrapper'>"
+				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
+				+"<div class='note-detail'><pre>"+inputValue+"</pre></div>" //not details are generated here
+				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
+				+"</div>"
+				+"</div>";
+
+				console.log("returning html");
+
+				return html;
 
 }
 
@@ -123,6 +148,23 @@ $("body:not(input)").click(function(e){
 	
 	// =============== ajax start =================
 
+<<<<<<< HEAD
+=======
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange=function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// document.getElementById("status-container").innerHTML = xhr.responseText;
+
+			alert(xhr.responseText);
+			//Put actions on what to do affter the DATA has AJAXed.
+
+			$('.saved-note').prepend(note.addNote);
+
+			// Escape Input
+				// $('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
+				// $('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
+>>>>>>> 517d27cbaacf47e6e95353d824537f19912f9762
 
 
 	noteForm.sendInfoAJAX();
