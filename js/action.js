@@ -26,11 +26,19 @@ noteForm.clearContents = function() {
 // Function "sendInfoAJAX" sends the info using AJAX. Uses POST to send the info.
 // One requred arguement containint a string. String must be using var=val& format. validate the text down th line 
 noteForm.sendInfoAJAX = function(){
+	$.post(
+		"resources/add_note.php",
+		{
+			title: "Hello",
+			detail: "I am saying hello"
+		},
 
+		function(data, status){
+			alert(status + data);
+		});
 }
 
 noteForm.showContents = function(){
-
  	$('.problem-detail').show();
 	$('.problem-options').show();	
 
@@ -43,20 +51,6 @@ noteForm.showContents = function(){
 */
 
 var note = {};
-
-//Note 
-
-
-//This will clear the contents of each input box and hide the textarea box.
-//Just like in google keep
-
-note.html = "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div id='' class='note-wrapper'>"
-				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
-				+"<div class='note-detail'><pre> detail</pre></div>" //not details are generated here
-				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
-				+"</div>"
-				+"</div>"
 
 
 //When the ussr click the input box. the program will expand the textarea box
@@ -129,34 +123,9 @@ $("body:not(input)").click(function(e){
 	
 	// =============== ajax start =================
 
-	var xhr = new XMLHttpRequest();
 
-	xhr.onreadystatechange=function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			// document.getElementById("status-container").innerHTML = xhr.responseText;
 
-			alert(xhr.responseText);
-			//Put actions on what to do affter the DATA has AJAXed.
-
-			$('.saved-note').prepend(note.html);
-
-			// Escape Input
-				$('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
-				$('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
-
-				$('.note-container').hover(function(){
-					$(".note-options",this).css("visibility","visible");
-					return false;
-				},function(){
-					$(".note-options",this).css("visibility","hidden");
-					return false;
-				});
-		}
-
-	}
-	xhr.open("POST", "resources/add_note.php", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send("title="+problem_title+"&detail="+problem_detail+"");
+	noteForm.sendInfoAJAX();
 
 
 	/* ============== AJAX END ================ */

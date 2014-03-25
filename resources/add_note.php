@@ -27,7 +27,7 @@ try {
 	echo $db->lastInsertId();
 
 } catch (exception $e) {
-	echo "there was a problem querying the database. perhaps there was something wrong with the query";
+	echo "there was a problem querying the database. Your Data will not be saved.";
 }
 
 $db = null;
