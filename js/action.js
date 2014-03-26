@@ -1,8 +1,8 @@
-/* Jquery plugin that autosizes textareas (thanks github) */
-	$('.problem-detail').autosize();
-/* Dependency please do not remove */
+
 
 //Note Objects
+
+//This function allows me to escape text
 
 
 
@@ -10,8 +10,12 @@
 /* NoteForm Object
 // object defines what happents when a user creates a note. In the future I would like to attach this to an agent directory.
 */
-
 var noteForm = {};
+
+noteForm.escapeHTML = function (text) {
+	
+	return $("<div></div>").text(text).html();
+}
 
 // Function "Clear Contents" no return value
 // Clears the contents of Input and TextArea fields
@@ -23,19 +27,48 @@ noteForm.clearContents = function() {
 	$('.problem-options').css("display","none");
 }
 
+
+
 // Function "sendInfoAJAX" sends the info using AJAX. Uses POST to send the info.
 // One requred arguement containint a string. String must be using var=val& format. validate the text down th line 
-noteForm.sendInfoAJAX = function(){
+noteForm.sendInfoAJAX = function(noteTitle, noteDetails){
 	$.post(
 		"resources/add_note.php",
 		{
-			title: "Hello",
-			detail: "I am saying hello"
+			title: noteTitle,
+			detail: noteDetails
 		},
 
 		function(data, status){
-			alert(status + data);
+			
+			console.log("AJAX request was successful. Returning data");
+			noteForm.addNote(noteTitle, noteDetails);
+			// AJAX request was successful
+
+		}).fail(function(){
+
+			console.log("There was an issue with the ajax request. Perhaps there is no connection to the server or the page requested is not present");
+			// Do Something is there is a failure
 		});
+}
+
+noteForm.addNote = function(noteTitle, noteDetails){
+
+	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+					+"<div id='' class='note-wrapper'>"
+				+"<div class='note-title'><strong>"+noteForm.escapeHTML(noteTitle)+"</strong></div>" //Title is generated here
+				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
+				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
+				+"</div>"
+				+"</div>";
+
+				console.log("Returning HTML data for new note!");
+				console.log(noteForm.escapeHTML(noteTitle));
+				console.log(noteForm.escapeHTML(noteDetails));
+				note.showContents();
+
+				$('.saved-note').prepend(html);
+
 }
 
 noteForm.showContents = function(){
@@ -52,81 +85,25 @@ noteForm.showContents = function(){
 
 var note = {};
 
-<<<<<<< HEAD
-=======
 //Note 
 
 
 //This will clear the contents of each input box and hide the textarea box.
 //Just like in google keep
 
-note.addNote =
-
->>>>>>> 517d27cbaacf47e6e95353d824537f19912f9762
-
-//When the ussr click the input box. the program will expand the textarea box
-note.showContents = function(){
-
-}
-
-note.deleteNote = function(){
-
-}
-
-//Adds note to the main page
-note.addNote = function(textarea){
-
-	var inputValue = $("<h1></h1>").text("<h1> Hello </h1>").html();
-	var textareaValue;
-	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div id='' class='note-wrapper'>"
-				+"<div class='note-title'><strong> </strong></div>" //Title is generated here
-				+"<div class='note-detail'><pre>"+inputValue+"</pre></div>" //not details are generated here
-				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
-				+"</div>"
-				+"</div>";
-
-				console.log("returning html");
-
-				return html;
-
-}
-
-//Submits Note to the datdabase using Ajax
-note.submitNote = function(){
-
-}
-
-//Allows you to edit the note by clicking it. Much like they do in google keep
-note.editNote = function(){
-
-}
-
-//This will initialize the note by creating the skeleton for each note.
-note.init = function(){
-
-}
-
-
-alert(note.contents);
-
-
-
-
+// ====== DOCUMENT GET READY! =================
 
 $(document).ready(function () {
 	
 
+	/* Jquery plugin that autosizes textareas (thanks github) */
+	$('.problem-detail').autosize();
+/* Dependency please do not remove */
+
 	$('.problem-title').click(function(){
-			
 			noteForm.showContents();
 
 	});
-
-
-
-
-	
 
 
 // When the user clicks the done button or anywhere outside of the textarea and input, the note will submit.
@@ -146,75 +123,24 @@ $("body:not(input)").click(function(e){
 	var problem_detail = $('.problem-detail').val();
 	var problem_title = $('.problem-title').val();
 	
-	// =============== ajax start =================
+	// =============== ajax start ================
 
-<<<<<<< HEAD
-=======
-	var xhr = new XMLHttpRequest();
-
-	xhr.onreadystatechange=function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			// document.getElementById("status-container").innerHTML = xhr.responseText;
-
-			alert(xhr.responseText);
-			//Put actions on what to do affter the DATA has AJAXed.
-
-			$('.saved-note').prepend(note.addNote);
-
-			// Escape Input
-				// $('.saved-note > div:first-child > .note-wrapper > .note-detail').text(problem_detail);
-				// $('.saved-note > div:first-child > .note-wrapper > .note-title strong').text(problem_title);
->>>>>>> 517d27cbaacf47e6e95353d824537f19912f9762
-
-
-	noteForm.sendInfoAJAX();
-
+			noteForm.sendInfoAJAX(problem_title, problem_detail);
 
 	/* ============== AJAX END ================ */
 
-
-
-				// Clear Contents of input boxes
-				$('.problem-title').val("");
-				$('.problem-detail').val("");
-				$('.problem-detail').height("20px");
-				$('.problem-detail').css("display","none");
-				$('.problem-options').css("display","none");
-
-
-				//Porblem. Trying to make it so th1at when you hover ove a box, the option box appears.
+			noteForm.clearContents()
 				
-			}// Else statement end
-
-				$('.delete-note').click(function(){
-
-			alert("You have clicked this button");
-				$('.note-container', this).remove();
-
-
-		// var xhr = new HMLHttpRequest();
-		// xhr.onreadystatechange=function(){
-		// 	if(xhr.readyState == 4 && xhr.status == 200) {
-
-
-		// 	}
-		// }
-		// xhr.open("POST", "resources/remove_note.php", true);
-		// xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		// xhr.send("var=something&var=something");
+		}// Else statement end
 
 	
-
-	});
+		$('.delete-note').click(function(){
+		alert("You have clicked this button");
+		$('.note-container', this).remove();
+		});
 
 		}// Target if statement end
 
 	}); // Input submtit end.
-
-
-	// When th note is removedd
-
-
-	
 
 }); //=========== End of Document.ready ==========
