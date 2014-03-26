@@ -13,7 +13,6 @@
 var noteForm = {};
 
 noteForm.escapeHTML = function (text) {
-	
 	return $("<div></div>").text(text).html();
 }
 
@@ -31,7 +30,7 @@ noteForm.clearContents = function() {
 
 // Function "sendInfoAJAX" sends the info using AJAX. Uses POST to send the info.
 // One requred arguement containint a string. String must be using var=val& format. validate the text down th line 
-noteForm.sendInfoAJAX = function(noteTitle, noteDetails){
+noteForm.addInfoAJAX = function(noteTitle, noteDetails){
 	$.post(
 		"resources/add_note.php",
 		{
@@ -42,7 +41,7 @@ noteForm.sendInfoAJAX = function(noteTitle, noteDetails){
 		function(data, status){
 			
 			console.log("AJAX request was successful. Returning data");
-			noteForm.addNote(noteTitle, noteDetails);
+			noteForm.addNote(noteTitle, noteDetails, data);
 			// AJAX request was successful
 
 		}).fail(function(){
@@ -52,10 +51,10 @@ noteForm.sendInfoAJAX = function(noteTitle, noteDetails){
 		});
 }
 
-noteForm.addNote = function(noteTitle, noteDetails){
+noteForm.addNote = function(noteTitle, noteDetails, noteId){
 
 	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div id='' class='note-wrapper'>"
+					+"<div id='"+noteId+"' class='note-wrapper'>"
 				+"<div class='note-title'><strong>"+noteForm.escapeHTML(noteTitle)+"</strong></div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
 				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
@@ -65,17 +64,19 @@ noteForm.addNote = function(noteTitle, noteDetails){
 				console.log("Returning HTML data for new note!");
 				console.log(noteForm.escapeHTML(noteTitle));
 				console.log(noteForm.escapeHTML(noteDetails));
-				note.showContents();
+				noteForm.showContents();
 
-				$('.saved-note').prepend(html);
+				$('.saved-note').prepend(html).hover(function(){
+					$('.delete-note').css("display", "inline");
+				});
 
 }
 
 noteForm.showContents = function(){
  	$('.problem-detail').show();
 	$('.problem-options').show();	
-
 }
+
 
 // NoteForm object End
 
@@ -84,6 +85,21 @@ noteForm.showContents = function(){
 */
 
 var note = {};
+
+note.removeInfoAJAX = function(){
+
+$.post("resources/add_note.php",
+	{
+		id: //Enter note id here.!
+	},
+	 function(data,status){
+	 	console.log("AJAX request was successful. Returning data");
+
+});
+
+}
+
+
 
 //Note 
 
@@ -125,15 +141,16 @@ $("body:not(input)").click(function(e){
 	
 	// =============== ajax start ================
 
-			noteForm.sendInfoAJAX(problem_title, problem_detail);
+			noteForm.addInfoAJAX(problem_title, problem_detail);
 
 	/* ============== AJAX END ================ */
 
-			noteForm.clearContents()
+			noteForm.clearContents();
 				
 		}// Else statement end
 
-	
+		
+
 		$('.delete-note').click(function(){
 		alert("You have clicked this button");
 		$('.note-container', this).remove();
