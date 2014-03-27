@@ -53,8 +53,8 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails){
 
 noteForm.addNote = function(noteTitle, noteDetails, noteId){
 
-	var html =  "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div id='"+noteId+"' class='note-wrapper'>"
+	var html =  "<div id='"+noteId+"' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+					+"<div class='note-wrapper'>"
 				+"<div class='note-title'><strong>"+noteForm.escapeHTML(noteTitle)+"</strong></div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
 				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
@@ -64,10 +64,28 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 				console.log("Returning HTML data for new note!");
 				console.log(noteForm.escapeHTML(noteTitle));
 				console.log(noteForm.escapeHTML(noteDetails));
-				noteForm.showContents();
+			
 
-				$('.saved-note').prepend(html).hover(function(){
-					$('.delete-note').css("display", "inline");
+				$('.saved-note').prepend(html);
+
+				$('.note-container').hover(function(){
+					
+					$(this, "note-wrapper note-options").css("visibility", "visible");
+
+
+			});
+
+				$('.note-container').click(function(e){
+					var thisId = $(this).attr("id");
+
+					if($(e.target).is('.delete-note')) {
+						console.log("removing note. Remove note ID " + thisId);
+						note.removeInfoAJAX(thisId);
+
+						$(this).remove();
+					}
+
+					
 				});
 
 }
@@ -86,15 +104,19 @@ noteForm.showContents = function(){
 
 var note = {};
 
-note.removeInfoAJAX = function(){
+note.removeInfoAJAX = function(noteId){
 
-$.post("resources/add_note.php",
+$.post("resources/remove_note.php",
 	{
-		id: //Enter note id here.!
+		id: noteId //Enter note id here.!;
 	},
 	 function(data,status){
+	 	console.log("the data removeInfoAJAX got was ID " + noteId);
 	 	console.log("AJAX request was successful. Returning data");
 
+}).fail(function(){
+
+	alert("Was not able to delete the note becaause there is no connectiont to the database.");
 });
 
 }
@@ -107,7 +129,7 @@ $.post("resources/add_note.php",
 //This will clear the contents of each input box and hide the textarea box.
 //Just like in google keep
 
-// ====== DOCUMENT GET READY! =================
+// 						====== DOCUMENT GET READY! =================
 
 $(document).ready(function () {
 	
@@ -118,9 +140,9 @@ $(document).ready(function () {
 
 	$('.problem-title').click(function(){
 			noteForm.showContents();
-
 	});
 
+	
 
 // When the user clicks the done button or anywhere outside of the textarea and input, the note will submit.
 // - If nothing is entered, the information will not submit
@@ -148,13 +170,6 @@ $("body:not(input)").click(function(e){
 			noteForm.clearContents();
 				
 		}// Else statement end
-
-		
-
-		$('.delete-note').click(function(){
-		alert("You have clicked this button");
-		$('.note-container', this).remove();
-		});
 
 		}// Target if statement end
 
