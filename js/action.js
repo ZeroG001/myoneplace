@@ -73,6 +73,8 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 					$(this, "note-wrapper note-options").css("visibility", "visible");
 
 
+			},function(){
+				$(this,"note-wrapper note-options").css("visibility", "hidden");
 			});
 
 				$('.note-container').click(function(e){
@@ -116,7 +118,7 @@ $.post("resources/remove_note.php",
 
 }).fail(function(){
 
-	alert("Was not able to delete the note becaause there is no connectiont to the database.");
+	alert("The note was not able to delete because there is no connection to the database.");
 });
 
 }

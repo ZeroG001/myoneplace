@@ -24,6 +24,7 @@ try {
 	$result->execute();
 
 	//This should be the only things thats echoed!
+	//lastInsertId - This returns the note_id of the laster thing inserted
 	echo $db->lastInsertId();
 
 } catch (exception $e) {
