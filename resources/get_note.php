@@ -24,11 +24,14 @@ try {
 $results_array = $stmt->fetchAll(PDO::FETCH_ASSOC);	
 
 foreach ($results_array as $value) {
-	foreach ($value as $v) {
-		echo $v['user_id'] . "<br />";
-	}
+
+
+echo "<div id='". $value['note_id'] . "' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>";
+echo "<div class='note-wrapper'>";
+echo "<div class='note-title'><strong>".$value['title']."</strong></div>";
+echo "<div class='note-detail'>".$value['details']."</div>";
+echo "<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>";
+echo "</div>";
+echo "</div>";				
 }
-
-
-var_dump($results_array);
 ?>

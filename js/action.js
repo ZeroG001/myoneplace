@@ -68,14 +68,16 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 
 				$('.saved-note').prepend(html);
 
-				$('.note-container').hover(function(){
+			// This has been Temporaily Taken out. Trying to make it so that when you hover over a note, the options appear
+			// This function does not work but its in the works!
+			// 	$('.note-container').hover(function(){
 					
-					$(this, "note-wrapper note-options").css("visibility", "visible");
+			// 		$(this, "note-wrapper note-options").css("visibility", "visible");
 
 
-			},function(){
-				$(this,"note-wrapper note-options").css("visibility", "hidden");
-			});
+			// },function(){
+			// 	$(this,"note-wrapper note-options").css("visibility", "hidden");
+			// });
 
 				$('.note-container').click(function(e){
 					var thisId = $(this).attr("id");
@@ -123,6 +125,10 @@ $.post("resources/remove_note.php",
 
 }
 
+note.getInfoAJAX = function(){
+
+}
+
 
 
 //Note 
@@ -134,6 +140,21 @@ $.post("resources/remove_note.php",
 // 						====== DOCUMENT GET READY! =================
 
 $(document).ready(function () {
+
+	$('.saved-note').load("resources/get_note.php", function(){
+		$('.note-container').click(function(e){
+					var thisId = $(this).attr("id");
+
+					if($(e.target).is('.delete-note')) {
+						console.log("removing note. Remove note ID " + thisId);
+						note.removeInfoAJAX(thisId);
+
+						$(this).remove();
+					}
+
+					
+				});
+	});
 	
 
 	/* Jquery plugin that autosizes textareas (thanks github) */
@@ -143,6 +164,8 @@ $(document).ready(function () {
 	$('.problem-title').click(function(){
 			noteForm.showContents();
 	});
+
+
 
 	
 
