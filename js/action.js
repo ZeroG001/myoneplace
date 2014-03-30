@@ -55,9 +55,9 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 
 	var html =  "<div id='"+noteId+"' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
 					+"<div class='note-wrapper'>"
-				+"<div class='note-title'><strong>"+noteForm.escapeHTML(noteTitle)+"</strong></div>" //Title is generated here
+				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
-				+"<div class='note-options'> Color | Archive | <button class='delete-note'> Delete </button> </div>"
+				+"<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button> | <button class='btn btn-primary btn-xs delete-note'> Delete </button> </div>"
 				+"</div>"
 				+"</div>";
 
@@ -81,6 +81,8 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 
 				$('.note-container').click(function(e){
 					var thisId = $(this).attr("id");
+					var thisTitle = $(".note-title", this);
+					var thisDetail = $(".note-detail", this);
 
 					if($(e.target).is('.delete-note')) {
 						console.log("removing note. Remove note ID " + thisId);
@@ -89,8 +91,28 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 						$(this).remove();
 					}
 
+					if($(e.target).is('.edit-note-modal')) {
+						var modalTextarea = $(".edit-problem-detail");
+						var modalInput = $(".edit-problem-title");
+
+						modalTextarea.val(thisDetail.html());
+						modalInput.val(thisTitle.html());
+
+						
+
+						$('.save-note').click(function(){
+
+							note.editNote(modalInput.val(),modalTextarea.val(),thisId);
+							thisTitle.html(modalInput.val());
+							thisDetail.html(modalTextarea.val());
+						});
+					}//Save note end!
+
 					
 				});
+
+
+
 
 }
 
@@ -125,10 +147,30 @@ $.post("resources/remove_note.php",
 
 }
 
-note.getInfoAJAX = function(){
+note.editNote = function(noteTitle, noteDetails, noteId){
+	//When the user clicks on the note, a modal in the middle of the screen.
+	//If th modal does not work out then have it so that you can edit the note then and there.
 
+	$.post(
+		"resources/edit_note.php",
+		{
+			title: noteTitle,
+			detail: noteDetails,
+			note_id: noteId
+		},
+
+		function(data, status){
+			
+			console.log("AJAX request was successful. Returning data");
+			
+			// AJAX request was successful
+
+		}).fail(function(){
+
+			console.log("There was an issue with the ajax request. Perhaps there is no connection to the server or the page requested is not present");
+			// Do Something is there is a failure
+		});
 }
-
 
 
 //Note 
@@ -142,8 +184,13 @@ note.getInfoAJAX = function(){
 $(document).ready(function () {
 
 	$('.saved-note').load("resources/get_note.php", function(){
+
 		$('.note-container').click(function(e){
+					//Gathering info for this note 
 					var thisId = $(this).attr("id");
+					var thisTitle = $(".note-title", this);
+					var thisDetail = $(".note-detail", this);
+					console.log("Gathering note info this note... " + thisId + " " + thisTitle.html() + " " + thisDetail.html());
 
 					if($(e.target).is('.delete-note')) {
 						console.log("removing note. Remove note ID " + thisId);
@@ -152,6 +199,24 @@ $(document).ready(function () {
 						$(this).remove();
 					}
 
+					//When edit is clicked. Information is sent to modal.
+					if($(e.target).is('.edit-note-modal')) {
+						var modalTextarea = $(".edit-problem-detail");
+						var modalInput = $(".edit-problem-title");
+
+						modalTextarea.val(thisDetail.html());
+						modalInput.val(thisTitle.html());
+
+						
+
+						$('.save-note').click(function(){
+
+							note.editNote(modalInput.val(),modalTextarea.val(),thisId);
+							thisTitle.html(modalInput.val());
+							thisDetail.html(modalTextarea.val());
+						});
+					}//Save note end!
+
 					
 				});
 	});
@@ -159,6 +224,7 @@ $(document).ready(function () {
 
 	/* Jquery plugin that autosizes textareas (thanks github) */
 	$('.problem-detail').autosize();
+	$('.edit-problem-detail').autosize();
 /* Dependency please do not remove */
 
 	$('.problem-title').click(function(){

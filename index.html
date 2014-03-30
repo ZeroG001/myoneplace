@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.autosize.min.js"></script>
 	<script type="text/javascript" src="js/action.js"></script>
 </head>
@@ -29,11 +30,38 @@
 			Content will be saved using AJAX coded within action.js
 		-->
 
-		</div> <!-- Row End -->
+	</div> <!-- Row End -->
 
-	</div> <!-- End container -->
+	<!-- Button trigger modal -->
 
-	
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog"> 
+
+			<div class="modal-content">
+				<div class="modal-header">
+				<input type="text" aria-multiline="true" placeholder="Title" class="edit-problem-title form-control" id="problem-title">
+			</div>
+
+			<div class="modal-body">
+				<textarea placeholder="Problem" class="edit-problem-detail form-control" rows="1" ></textarea>
+			</div>
+			
+
+			<div class="modal-footer">
+				<button class=" save-note btn btn-default" type="button" data-dismiss="modal"> Save and Close </button>
+				<button class="btn btn-default" type="button" data-dismiss="modal"> Close </button>
+			</div>
+
+		</div> <!-- Modal Content End -->
+		</div> <!-- Modal Dialog End -->
+	</div> <!-- Modal End -->
+
+
+</div> <!-- End container -->
+
+
 
 </body>
 

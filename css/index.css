@@ -5,6 +5,7 @@ body {
 
 
 
+
 textarea {
 	resize: none;
 	overflow: hidden;
@@ -50,6 +51,12 @@ input {
 	display: none;
 }
 
+ /* This was added to the bootstrap modal so that everything lines up within the modal */
+.modal-body {
+	padding: 15px;
+	
+}
+
 /* This unstyleizes the pre from bootstrap */
 .note-detail {
 	margin: 0;
@@ -80,6 +87,8 @@ input {
 input:focus {
 	outline: none;
 }
+
+.modal {padding-top: 15%;}
 
 /*======================= media queries =================*/
 
