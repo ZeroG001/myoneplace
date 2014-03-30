@@ -36,6 +36,7 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails){
 		{
 			title: noteTitle,
 			detail: noteDetails
+			
 		},
 
 		function(data, status){
@@ -241,7 +242,8 @@ $(document).ready(function () {
 
 $("body:not(input)").click(function(e){
 
-	if($(e.target).is(':not(.problem-title, .problem-detail)')) {
+	// If anything within the problem container is clicked. Nothing will be submitted.
+	if($(e.target).is(':not(.problem-container,.problem-container > *, .color-dropdown-button, .color-dropdown-list, .color-dropdown-list > *)')) {
 
 		if ($('.problem-title').val() == "" && $('.problem-detail').val() == "") {
 

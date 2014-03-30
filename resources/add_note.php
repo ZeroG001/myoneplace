@@ -12,6 +12,7 @@ include("config.php");
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$detail = $_POST['detail'];
 	$title = $_POST['title'];
+	
 } else {
 	exit;
 }

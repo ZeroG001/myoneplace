@@ -13,10 +13,29 @@
 	<div class="container"> <!-- Start main Container -->
 
 		<div class="problem-container">
+
 			<input type="text" aria-multiline="true" placeholder="Title" class="problem-title form-control" id="problem-title">
 
 			<textarea placeholder="Problem" class="problem-detail form-control" rows="1" ></textarea>
-			<div class="problem-options "> <button type="button" class="problem-submit"> Done </button> | Color</div>
+
+			<div class="problem-options"> 
+				<button type="button" class="problem-submit btn btn-default pull-right"> Done </button> 
+
+				<div class="btn-group">
+					<button type="button" class="btn dropdown-toggle color-dropdown-button" data-toggle="dropdown">
+						Color <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu color-dropdown-list" role="menu">
+						<li style="background-color: #E65959" id="#E65959"></li>
+						<li style="background-color: #EC813A" id="#EC813A"></li>
+						<li style="background-color: #ECDE3A" id="#ECDE3A"></li>
+						<li style="background-color: #BAEC3A" id="#BAEC3A"></li>
+						<li style="background-color: #54D2F1" id="#54D2F1"></li>
+						<li style="background-color: #AA6BAE" id="#AA6BAE"></li>
+						<li style="background-color: #F0EDE5" id="#F0EDE5"></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<!-- Created for testing purposes Delete later on. This was added to show a notification when a user updates the page -->
