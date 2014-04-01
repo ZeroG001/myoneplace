@@ -44,6 +44,7 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails, noteColor){
 			
 			console.log("AJAX request was successful. Returning data");
 			noteForm.addNote(noteTitle, noteDetails, noteColor, data);
+			console.log(data);
 			// AJAX request was successful
 
 		}).fail(function(){
@@ -101,7 +102,7 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 						modalInput.val(thisTitle.text());
 
 
-						$('.save-note').click(function(){
+						$('.save-note').unbind().click(function(){
 							//Use AJAX to update the note.
 							note.editNote(modalInput.val(),modalTextarea.val(),thisId);
 
