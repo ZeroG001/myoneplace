@@ -29,8 +29,8 @@ foreach ($results_array as $value) {
 
 echo "<div id='". $value['note_id'] . "' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>";
 echo "<div class='note-wrapper'>";
-echo "<div class='note-title'>".$value['title']."</div>";
-echo "<div class='note-detail'>".$value['details']."</div>";
+echo "<div class='note-title'>".htmlentities($value['title'])."</div>";
+echo "<div class='note-detail'>".htmlentities($value['details'])."</div>";
 echo "<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button>  | <button class='dbtn btn-primary btn-xs delete-note'> Delete </button> </div>";
 echo "</div>";
 echo "</div>";				

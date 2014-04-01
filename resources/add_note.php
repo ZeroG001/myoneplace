@@ -12,16 +12,17 @@ include("config.php");
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$detail = $_POST['detail'];
 	$title = $_POST['title'];
-	
+	$noteColor  = $_POST['color'];
 } else {
 	exit;
 }
 
 try {
-	$query = "INSERT INTO tbl_notes (details,title) VALUES (?,?)";
+	$query = "INSERT INTO tbl_notes (details,title, note_color) VALUES (?,?,?)";
 	$result = $db->prepare($query);
 	$result->bindValue(1,$detail);
 	$result->bindValue(2,$title);
+	$result->bindValue(3,$noteColor);
 	$result->execute();
 
 	//This should be the only things thats echoed!

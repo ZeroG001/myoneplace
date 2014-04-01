@@ -30,19 +30,20 @@ noteForm.clearContents = function() {
 
 // Function "sendInfoAJAX" sends the info using AJAX. Uses POST to send the info.
 // One requred arguement containint a string. String must be using var=val& format. validate the text down th line 
-noteForm.addInfoAJAX = function(noteTitle, noteDetails){
+noteForm.addInfoAJAX = function(noteTitle, noteDetails, noteColor){
 	$.post(
 		"resources/add_note.php",
 		{
 			title: noteTitle,
-			detail: noteDetails
-			
+			detail: noteDetails,
+			color: noteColor
+
 		},
 
 		function(data, status){
 			
 			console.log("AJAX request was successful. Returning data");
-			noteForm.addNote(noteTitle, noteDetails, data);
+			noteForm.addNote(noteTitle, noteDetails, noteColor, data);
 			// AJAX request was successful
 
 		}).fail(function(){
@@ -52,10 +53,10 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails){
 		});
 }
 
-noteForm.addNote = function(noteTitle, noteDetails, noteId){
+noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 
 	var html =  "<div id='"+noteId+"' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
-					+"<div class='note-wrapper'>"
+					+"<div class='note-wrapper' style='background-color:"+noteColor+"'>"
 				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
 				+"<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button> | <button class='btn btn-primary btn-xs delete-note'> Delete </button> </div>"
@@ -93,19 +94,20 @@ noteForm.addNote = function(noteTitle, noteDetails, noteId){
 					}
 
 					if($(e.target).is('.edit-note-modal')) {
+						
 						var modalTextarea = $(".edit-problem-detail");
 						var modalInput = $(".edit-problem-title");
+						modalTextarea.val(thisDetail.text());
+						modalInput.val(thisTitle.text());
 
-						modalTextarea.val(thisDetail.html());
-						modalInput.val(thisTitle.html());
-
-						
 
 						$('.save-note').click(function(){
-
+							//Use AJAX to update the note.
 							note.editNote(modalInput.val(),modalTextarea.val(),thisId);
-							thisTitle.html(modalInput.val());
-							thisDetail.html(modalTextarea.val());
+
+							//Have the changes reflect on the page immidietly
+							thisTitle.text(modalInput.val()).html();
+							thisDetail.text(modalTextarea.val()).html();
 						});
 					}//Save note end!
 
@@ -184,6 +186,30 @@ note.editNote = function(noteTitle, noteDetails, noteId){
 
 $(document).ready(function () {
 
+	//
+	/* Jquery plugin that autosizes textareas (thanks github) */
+	$('.problem-detail').autosize();
+	$('.edit-problem-detail').autosize();
+/* Dependency please do not remove */
+
+
+	// This function I found on stack overflow that converts RGB values to Hex.
+	function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+
+    //When the user clicks on the input box, the rest shows.
+	$('.problem-title').click(function(){
+			noteForm.showContents();
+	});
+
+
+
+	//The notes (if any) loaded onto page using AJAX line below.
 	$('.saved-note').load("resources/get_note.php", function(){
 
 		$('.note-container').click(function(e){
@@ -193,6 +219,8 @@ $(document).ready(function () {
 					var thisDetail = $(".note-detail", this);
 					console.log("Gathering note info this note... " + thisId + " " + thisTitle.html() + " " + thisDetail.html());
 
+
+					//If you click on the delete button the button is removed.
 					if($(e.target).is('.delete-note')) {
 						console.log("removing note. Remove note ID " + thisId);
 						note.removeInfoAJAX(thisId);
@@ -202,35 +230,31 @@ $(document).ready(function () {
 
 					//When edit is clicked. Information is sent to modal.
 					if($(e.target).is('.edit-note-modal')) {
+
 						var modalTextarea = $(".edit-problem-detail");
 						var modalInput = $(".edit-problem-title");
-
-						modalTextarea.val(thisDetail.html());
-						modalInput.val(thisTitle.html());
+						modalTextarea.val(thisDetail.text());
+						modalInput.val(thisTitle.text());
 
 						
-
-						$('.save-note').click(function(){
+						//Within Modal. When save is clicked
+						//AJAX is used to update note in database
+						//The changes are reflected on the main list of notes.
+						//$.text().html() is used alot to escape characters.
+						$('.save-note').unbind().click(function(){
 
 							note.editNote(modalInput.val(),modalTextarea.val(),thisId);
-							thisTitle.html(modalInput.val());
-							thisDetail.html(modalTextarea.val());
+							thisTitle.text(modalInput.val()).html();
+							thisDetail.text(modalTextarea.val()).html();
 						});
 					}//Save note end!
 
 					
 				});
-	});
+	});// Ajax load end
 	
 
-	/* Jquery plugin that autosizes textareas (thanks github) */
-	$('.problem-detail').autosize();
-	$('.edit-problem-detail').autosize();
-/* Dependency please do not remove */
 
-	$('.problem-title').click(function(){
-			noteForm.showContents();
-	});
 
 
 
@@ -240,7 +264,8 @@ $(document).ready(function () {
 // - If nothing is entered, the information will not submit
 // - The information will automatically clear itself.
 
-$("body:not(input)").click(function(e){
+$("body, .problem-container").click(function(e){
+	
 
 	// If anything within the problem container is clicked. Nothing will be submitted.
 	if($(e.target).is(':not(.problem-container,.problem-container > *, .color-dropdown-button, .color-dropdown-list, .color-dropdown-list > *)')) {
@@ -253,10 +278,12 @@ $("body:not(input)").click(function(e){
 
 	var problem_detail = $('.problem-detail').val();
 	var problem_title = $('.problem-title').val();
+	var problem_color = (rgb2hex($('.problem-container').css("background-color")));
+
 	
 	// =============== ajax start ================
 
-			noteForm.addInfoAJAX(problem_title, problem_detail);
+			noteForm.addInfoAJAX(problem_title, problem_detail, problem_color);
 
 	/* ============== AJAX END ================ */
 
