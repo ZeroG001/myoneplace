@@ -56,13 +56,14 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails, noteColor){
 
 noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 
-	var html =  "<div id='"+noteId+"' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+	var html =  "<div id='"+noteId+"'class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
 					+"<div class='note-wrapper' style='background-color:"+noteColor+"'>"
 				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
 				+"<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button> | <button class='btn btn-primary btn-xs delete-note'> Delete </button> </div>"
 				+"</div>"
-				+"</div>";
+				+"</div>"
+
 
 				console.log("Returning HTML data for new note!");
 				console.log(noteForm.escapeHTML(noteTitle));
@@ -98,6 +99,7 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 						
 						var modalTextarea = $(".edit-problem-detail");
 						var modalInput = $(".edit-problem-title");
+
 						modalTextarea.val(thisDetail.text());
 						modalInput.val(thisTitle.text());
 
@@ -246,7 +248,8 @@ $(document).ready(function () {
 
 						var modalTextarea = $(".edit-problem-detail");
 						var modalInput = $(".edit-problem-title");
-						modalTextarea.val(thisDetail.text());
+						
+						modalTextarea.val('poop').trigger('autosize.resize');
 						modalInput.val(thisTitle.text());
 
 						
