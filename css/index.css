@@ -37,9 +37,8 @@ input {
 .problem-container {
 	width: 500px;
 	margin: 50px auto;
-	border: 1px solid black;
 	padding: 20px;
-	background-color: #FFFFFF;
+	background-color: #F0EDE5;
 }
 
 .problem-options {

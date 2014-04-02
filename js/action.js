@@ -125,6 +125,13 @@ noteForm.showContents = function(){
 	$('.problem-options').show();	
 }
 
+noteForm.changeColor = function(){
+	$(".color-dropdown-list li").click(function() {
+	var $noteBackground = $(this).attr("id");
+	$(".problem-container").css('background-color', $noteBackground);
+	});
+}
+
 
 // NoteForm object End
 
@@ -187,6 +194,8 @@ note.editNote = function(noteTitle, noteDetails, noteId){
 
 $(document).ready(function () {
 
+	
+
 	//
 	/* Jquery plugin that autosizes textareas (thanks github) */
 	$('.problem-detail').autosize();
@@ -202,6 +211,9 @@ $(document).ready(function () {
     }
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
+
+//When a user clicks a color for the main form, the color changes
+	noteForm.changeColor();
 
     //When the user clicks on the input box, the rest shows.
 	$('.problem-title').click(function(){
