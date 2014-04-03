@@ -31,7 +31,8 @@ echo "<div id='". $value['note_id'] . "' class='col-xs-12 col-sm-6 col-md-4 col-
 echo "<div class='note-wrapper' style='background-color:".$value['note_color']."'>";
 echo "<div class='note-title'>".htmlentities($value['title'])."</div>";
 echo "<div class='note-detail'>".htmlentities($value['details'])."</div>";
-echo "<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button>  | <button class='dbtn btn-primary btn-xs delete-note'> Delete </button> </div>";
+echo "<div class='note-options'> Color | <button class='edit-note-modal btn btn-default btn-xs' data-toggle='modal' data-target='#myModal'>Edit</button>  |";
+echo "<button class='btn btn-default btn-xs delete-note'> Delete </button> </div>";
 echo "</div>";
 echo "</div>";		
 }

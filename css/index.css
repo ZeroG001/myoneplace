@@ -12,12 +12,14 @@ textarea {
 	outline: none;
 	border:none !important;
 	box-shadow: none !important;
+	color:black;
 }
 
 input {
 	outline: none;
 	border:none !important;
 	box-shadow: none !important;
+	color:black;
 } 
 /* These next two styles here style the dropdown box */
 .color-dropdown-list {
@@ -45,6 +47,10 @@ input {
 	display: none;
 }
 
+.edit-problem-detail {
+	height: 32px;
+}
+
 
 .problem-container input, .problem-container textarea {
 	border-width: 0px;
@@ -61,9 +67,13 @@ input {
 	visibility: visible;
 }
 
+.problem-title {
+	background-color: #F0EDE5;
+}
 
 .problem-detail {
 	display: none;
+	background-color: #F0EDE5;
 }
 
  /* This was added to the bootstrap modal so that everything lines up within the modal */
@@ -104,6 +114,7 @@ input:focus {
 }
 
 .modal {padding-top: 15%;}
+
 
 /*======================= media queries =================*/
 

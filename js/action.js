@@ -60,7 +60,8 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 					+"<div class='note-wrapper' style='background-color:"+noteColor+"'>"
 				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
-				+"<div class='note-options'> Color | <button class='edit-note-modal btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button> | <button class='btn btn-primary btn-xs delete-note'> Delete </button> </div>"
+				+"<div class='note-options'> Color | <button class='edit-note-modal btn btn-default btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button>|" 
+				+"<button class='btn btn-default btn-sm btn-sm delete-note'> Delete </button> </div>"
 				+"</div>"
 				+"</div>"
 
@@ -112,6 +113,11 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 							thisTitle.text(modalInput.val()).html();
 							thisDetail.text(modalTextarea.val()).html();
 						});
+
+						//This make it so that when the user clicks on EDIT, the width of the textarea is the correct size.
+						setTimeout(function(){
+						modalTextarea.trigger('autosize.resize');
+						},170);
 					}//Save note end!
 
 					
@@ -130,7 +136,7 @@ noteForm.showContents = function(){
 noteForm.changeColor = function(){
 	$(".color-dropdown-list li").click(function() {
 	var $noteBackground = $(this).attr("id");
-	$(".problem-container").css('background-color', $noteBackground);
+	$(".problem-container, .problem-title, .problem-detail").css('background-color', $noteBackground);
 	});
 }
 
@@ -249,7 +255,7 @@ $(document).ready(function () {
 						var modalTextarea = $(".edit-problem-detail");
 						var modalInput = $(".edit-problem-title");
 						
-						modalTextarea.val('poop').trigger('autosize.resize');
+						modalTextarea.val(thisDetail.text());
 						modalInput.val(thisTitle.text());
 
 						
@@ -263,6 +269,10 @@ $(document).ready(function () {
 							thisTitle.text(modalInput.val()).html();
 							thisDetail.text(modalTextarea.val()).html();
 						});
+						//This make it so that when the user clicks on EDIT, the width of the textarea is the correct size.
+						setTimeout(function(){
+						modalTextarea.trigger('autosize.resize');
+						},170);
 					}//Save note end!
 
 					
