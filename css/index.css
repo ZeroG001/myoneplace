@@ -39,9 +39,9 @@ input {
 /* dropdown button style end */
 
 .problem-container {
-	width: 500px;
+	/*width: 500px;
 	margin: 50px auto;
-	padding: 20px;
+	padding: 20px;*/
 	background-color: #F0EDE5;
 }
 
@@ -117,6 +117,27 @@ input:focus {
 
 .modal {padding-top: 15%;}
 
+.helloTest {
+	border: 1px solid black;
+}
+
+.active {
+	
+	position: relative;
+
+	-webkit-animation: slide 1s forwards;
+}
+
+.offCanvasLeft{
+	
+	top: 0;
+	left: -50%;
+	position: absolute;
+	color: red;
+
+	-webkit-transition: all 1s ease-out;
+}
+
 
 /*======================= media queries =================*/
 
@@ -125,6 +146,11 @@ input:focus {
 		width: 100%;
 	}
 
+}
+
+/*================= Keyframes ======================== */
+@-webkit-keyframes slide {
+	100% {left: 0px;}
 }
 
 
