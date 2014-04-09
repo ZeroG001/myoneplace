@@ -321,4 +321,13 @@ $("body, .problem-container").click(function(e){
 
 	}); // Input submtit end.
 
+$(".showOffCanvas").click(function(){
+	$(".offCanvasLeft").toggleClass("active");
+	console.log("Check to see if it worked.");
+});
+
+
+//When the user clicks the agent search buttons. a side pane window comes up. from the right
+//Here I am using javascript to call a css animation 
+
 }); //=========== End of Document.ready ==========
