@@ -117,7 +117,7 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 						//This make it so that when the user clicks on EDIT, the width of the textarea is the correct size.
 						setTimeout(function(){
 						modalTextarea.trigger('autosize.resize');
-						},170);
+						},200);
 					}//Save note end!
 
 					
@@ -272,7 +272,7 @@ $(document).ready(function () {
 						//This make it so that when the user clicks on EDIT, the width of the textarea is the correct size.
 						setTimeout(function(){
 						modalTextarea.trigger('autosize.resize');
-						},170);
+						},200);
 					}//Save note end!
 
 					
