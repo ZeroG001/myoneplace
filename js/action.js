@@ -210,6 +210,16 @@ $(document).ready(function () {
 	$('.edit-problem-detail').autosize();
 /* Dependency please do not remove */
 
+/*Masion*/
+
+var $container = $('.container');
+
+$container.masonry({
+	itemSelector: '.container',
+	columnWidth: '.container',
+	transitionDuration: 0
+});
+
 
 	// This function I found on stack overflow that converts RGB values to Hex.
 	function rgb2hex(rgb) {
