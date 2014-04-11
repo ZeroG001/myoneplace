@@ -20,13 +20,16 @@
 	- Import informarion using a spreadsheet or plaintext
 	- Cycle through websites involved in add/remove agents
 
-- Admin Login that allows yout
+- IN AND OUT
+	- Easly add user agent
 
 
 
 Things I may need to learn
 - AJAX using post to submit a form
 - Loading screen and animations
+- Learn more about grid system
+- More about GIT
 
 
 How is the note information going to be saved?

@@ -7,6 +7,7 @@
 
 
 
+
 /* NoteForm Object
 // object defines what happents when a user creates a note. In the future I would like to attach this to an agent directory.
 */
@@ -56,7 +57,7 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails, noteColor){
 
 noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 
-	var html =  "<div id='"+noteId+"'class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>"
+	var html =  "<div id='"+noteId+"'class='note-container'>"
 					+"<div class='note-wrapper' style='background-color:"+noteColor+"'>"
 				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
@@ -200,6 +201,8 @@ note.editNote = function(noteTitle, noteDetails, noteId){
 
 // 						====== DOCUMENT GET READY! =================
 
+
+
 $(document).ready(function () {
 
 	
@@ -212,13 +215,7 @@ $(document).ready(function () {
 
 /*Masion*/
 
-var $container = $('.container');
 
-$container.masonry({
-	itemSelector: '.container',
-	columnWidth: '.container',
-	transitionDuration: 0
-});
 
 
 	// This function I found on stack overflow that converts RGB values to Hex.
@@ -242,6 +239,8 @@ $container.masonry({
 
 	//The notes (if any) loaded onto page using AJAX line below.
 	$('.saved-note').load("resources/get_note.php", function(){
+
+
 
 		$('.note-container').click(function(e){
 					//Gathering info for this note 
@@ -287,6 +286,8 @@ $container.masonry({
 
 					
 				});
+
+
 	});// Ajax load end
 	
 
@@ -341,3 +342,11 @@ $(".showOffCanvas").click(function(){
 //Here I am using javascript to call a css animation 
 
 }); //=========== End of Document.ready ==========
+
+$(document).ajaxComplete(function(){
+	var container = $('.saved-note');
+container.masonry({
+	columnWidth: 260,
+	itemSelector: '.item'
+});
+});

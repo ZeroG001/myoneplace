@@ -5,9 +5,6 @@ body {
 	background-size: cover;
 }
 
-
-
-
 textarea {
 	resize: none;
 	overflow: hidden;
@@ -47,6 +44,15 @@ input {
 
 .problem-options {
 	display: none;
+}
+
+.item {
+	width: 260px;
+}
+
+.saved-note {
+	width: 90%;
+	margin: auto;
 }
 
 .edit-problem-detail {
@@ -117,9 +123,6 @@ input:focus {
 
 .modal {padding-top: 15%;}
 
-.helloTest {
-	border: 1px solid black;
-}
 
 .active {
 	

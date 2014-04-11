@@ -27,7 +27,7 @@ $results_array = array_reverse($results_array);
 foreach ($results_array as $value) {
 
 
-echo "<div id='". $value['note_id'] . "' class='col-xs-12 col-sm-6 col-md-4 col-lg-4 note-container'>";
+echo "<div id='". $value['note_id'] . "' class='item note-container'>";
 echo "<div class='note-wrapper' style='background-color:".$value['note_color']."'>";
 echo "<div class='note-title'>".htmlentities($value['title'])."</div>";
 echo "<div class='note-detail'>".htmlentities($value['details'])."</div>";
