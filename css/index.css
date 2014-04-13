@@ -36,9 +36,10 @@ input {
 /* dropdown button style end */
 
 .problem-container {
-	/*width: 500px;
+	width: 500px;
 	margin: 50px auto;
-	padding: 20px;*/
+	padding: 20px;
+	left:30px;
 	background-color: #F0EDE5;
 }
 
@@ -47,12 +48,14 @@ input {
 }
 
 .item {
+	/* this set the width of the note entries */
 	width: 260px;
 }
 
 .saved-note {
-	width: 90%;
-	margin: auto;
+	position: relative;
+	width:10%;
+	margin: 0 auto;
 }
 
 .edit-problem-detail {
@@ -63,6 +66,12 @@ input {
 .problem-container input, .problem-container textarea {
 	border-width: 0px;
 
+}
+
+.item {
+	/* Quick Patch. If this is removed, newly added notes will briefly be out of place.
+	then reset back to normal */
+	left:20px;
 }
 
 /* Add padding to the inside of the note details */

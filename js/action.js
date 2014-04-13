@@ -8,6 +8,8 @@
 
 
 
+
+
 /* NoteForm Object
 // object defines what happents when a user creates a note. In the future I would like to attach this to an agent directory.
 */
@@ -57,7 +59,7 @@ noteForm.addInfoAJAX = function(noteTitle, noteDetails, noteColor){
 
 noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 
-	var html =  "<div id='"+noteId+"'class='note-container'>"
+	var html =  "<div id='"+noteId+"'class='item note-container'>"
 					+"<div class='note-wrapper' style='background-color:"+noteColor+"'>"
 				+"<div class='note-title'>"+noteForm.escapeHTML(noteTitle)+"</div>" //Title is generated here
 				+"<div class='note-detail'>"+noteForm.escapeHTML(noteDetails)+"</div>" //not details are generated here
@@ -70,9 +72,14 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 				console.log("Returning HTML data for new note!");
 				console.log(noteForm.escapeHTML(noteTitle));
 				console.log(noteForm.escapeHTML(noteDetails));
+
+				$('.saved-note').prepend(html).masonry('reloadItems');;
+
+
 			
 
-				$('.saved-note').prepend(html);
+
+				
 
 			// This has been Temporaily Taken out. Trying to make it so that when you hover over a note, the options appear
 			// This function does not work but its in the works!
@@ -84,6 +91,8 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 			// },function(){
 			// 	$(this,"note-wrapper note-options").css("visibility", "hidden");
 			// });
+
+
 
 				$('.note-container').click(function(e){
 					var thisId = $(this).attr("id");
@@ -345,8 +354,10 @@ $(".showOffCanvas").click(function(){
 
 $(document).ajaxComplete(function(){
 	var container = $('.saved-note');
-container.masonry({
+	container.masonry({
 	columnWidth: 260,
-	itemSelector: '.item'
+	itemSelector: '.item',
+	isFitWidth: true
 });
+
 });
