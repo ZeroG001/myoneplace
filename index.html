@@ -16,7 +16,8 @@
 
 		<div class="problem-container">
 
-			<input type="text" placeholder="Who is this"> <button class='btn btn-xs btn-standard showOffCanvas'> Who is this? </button>
+			<input type="text" class="agentSearchInput" placeholder="Who is this"> <button class='btn btn-xs btn-standard showOffCanvas'> Who is this? </button>
+			<div class="agentSearchResult"> </div>
 
 			<input type="text" aria-multiline="true" placeholder="Title" class="problem-title form-control" id="problem-title">
 
@@ -31,8 +32,10 @@
 					<button type="button" class="btn dropdown-toggle color-dropdown-button" data-toggle="dropdown">
 						Color <span class="caret"></span>
 					</button>
+
+					<!-- Whatever color you put in here will determine the color of the note when submitted. -->
 					<ul class="dropdown-menu color-dropdown-list" role="menu">
-						<li style="background-color: #E65959" id="#E65959"></li>
+						<li style="background-color: #FF6347" id="#FF6347"></li>
 						<li style="background-color: #EC813A" id="#EC813A"></li>
 						<li style="background-color: #ECDE3A" id="#ECDE3A"></li>
 						<li style="background-color: #BAEC3A" id="#BAEC3A"></li>
@@ -90,6 +93,16 @@
 	
 
 </div>
+
+<!-- All content that you want to have pop up you need to put in here. -->
+<div class="offCanvasLeft">
+	<ul>
+		<li> This is a test </li>
+		<li> This is a test </li>
+		<li> This is a test </li>
+		<li> This is a test </li>
+	</ul>
+ </div>
 
 
 

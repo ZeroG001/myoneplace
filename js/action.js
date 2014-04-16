@@ -201,6 +201,17 @@ note.editNote = function(noteTitle, noteDetails, noteId){
 		});
 }
 
+note.EmployeeSearch = function(keyword){
+	$.post("resources/get_search_results.php", 
+	{
+		keyword: keyword
+	},
+
+	function(data){
+		$(".agentsearchresult").append(data);
+		});
+}
+
 
 //Note 
 
@@ -243,6 +254,8 @@ $(document).ready(function () {
 	$('.problem-title').click(function(){
 			noteForm.showContents();
 	});
+
+
 
 
 
@@ -344,6 +357,11 @@ $("body, .problem-container").click(function(e){
 $(".showOffCanvas").click(function(){
 	$(".offCanvasLeft").toggleClass("active");
 	console.log("Check to see if it worked.");
+
+	$(".agentsearchresult").empty();
+	console.log($(".agentsearchinput").val() + "was entered")
+	note.EmployeeSearch($(".agentsearchinput").val());
+	console.log("...and I think that worked too.");
 });
 
 

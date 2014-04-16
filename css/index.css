@@ -20,6 +20,19 @@ input {
 	box-shadow: none !important;
 	color:black;
 } 
+
+.agentSearchInput {
+	width:300px;
+}
+
+.agentSearchResult {
+	position: absolute;
+	width:300px;
+	overflow: none;
+	background-color: tomato;
+
+}
+
 /* These next two styles here style the dropdown box */
 .color-dropdown-list {
 	text-align: center; /* This for some reason centers the Color Boxes */
@@ -146,8 +159,10 @@ input:focus {
 	
 	top: 0;
 	left: -50%;
-	position: absolute;
+	position: fixed;
 	color: red;
+	background-color: tomato;
+	height:100%;
 
 	-webkit-transition: all 1s ease-out;
 }
