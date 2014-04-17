@@ -33,6 +33,11 @@ input {
 
 }
 
+.resultImage img {
+	height: 50px;
+	width: 60px;
+}
+
 /* These next two styles here style the dropdown box */
 .color-dropdown-list {
 	text-align: center; /* This for some reason centers the Color Boxes */
@@ -153,6 +158,7 @@ input:focus {
 	position: relative;
 
 	-webkit-animation: slide 1s forwards;
+	-moz-animation: slide 1s forwards;
 }
 
 .offCanvasLeft{
@@ -165,6 +171,7 @@ input:focus {
 	height:100%;
 
 	-webkit-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
 }
 
 
@@ -180,6 +187,10 @@ input:focus {
 /*================= Keyframes ======================== */
 @-webkit-keyframes slide {
 	100% {left: 0px;}
+}
+
+@-moz-keyframes slide {
+	100% {left:0px;}
 }
 
 
