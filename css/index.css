@@ -1,6 +1,8 @@
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 body {
-	font-family: monospace;
+	font-family: helvetica;
 	background: url('../img/grid_01.jpg') no-repeat center center fixed;
 	background-size: cover;
 }
@@ -82,6 +84,10 @@ input {
 	font-size: 17px;
 }
 
+.note-title {
+	font-weight: bold;
+}
+
  .note-options {
 	visibility: visible;
 }
@@ -103,9 +109,10 @@ input {
 
 /* This unstyleizes the pre from bootstrap */
 .note-detail {
+	
 	margin: 0;
 	font-size: inherit;
-	line-height: inherit;
+	line-height: 22px;
 	background-color: inherit;
 	border: 0px;
 	border-radius: 0px;
