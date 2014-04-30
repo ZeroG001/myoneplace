@@ -73,7 +73,7 @@ noteForm.addNote = function(noteTitle, noteDetails, noteColor, noteId){
 				console.log(noteForm.escapeHTML(noteTitle));
 				console.log(noteForm.escapeHTML(noteDetails));
 
-				$('.saved-note').prepend(html).masonry('reloadItems');;
+				$('.saved-note').prepend(html).masonry('reloadItems');
 
 
 			
