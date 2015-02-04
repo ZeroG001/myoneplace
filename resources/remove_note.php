@@ -15,9 +15,9 @@ try {
 	$stmt = $db->prepare($query);
 	$stmt->bindValue(1, $noteid);
 	$results = $stmt->execute();
-	echo "success query compleyte";
+	echo "Success Query Complete";
 } catch (exception $e) {
-	echo "there was a problem querying the database";
+	echo "There was a problem connecting to the database";
 }
 
 $db = null;

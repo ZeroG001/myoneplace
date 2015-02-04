@@ -161,18 +161,29 @@ var note = {};
 
 note.removeInfoAJAX = function(noteId){
 
-$.post("resources/remove_note.php",
-	{
-		id: noteId //Enter note id here.!;
-	},
-	 function(data,status){
-	 	console.log("the data removeInfoAJAX got was ID " + noteId);
-	 	console.log("AJAX request was successful. Returning data");
+	$.ajax({
+		type: "POST",
+		url: "resources/remove_note.php",
+		data: {id: noteId},
+		timeout: 1000,
+		error: function(JqXHR, testStatus, errorThrown) {
+			alert("The note was not able to delete because there is no connection to the database.");
+		}
 
-}).fail(function(){
+	});
 
-	alert("The note was not able to delete because there is no connection to the database.");
-});
+// $.post("resources/remove_note.php",
+// 	{
+// 		id: noteId //Enter note id here.!;
+// 	},
+// 	 function(data,status){
+// 	 	console.log("the data removeInfoAJAX got was ID " + noteId);
+// 	 	console.log("AJAX request was successful. Returning data");
+
+// }).fail(function(){
+
+	
+// });
 
 }
 
@@ -180,25 +191,15 @@ note.editNote = function(noteTitle, noteDetails, noteId){
 	//When the user clicks on the note, a modal in the middle of the screen.
 	//If th modal does not work out then have it so that you can edit the note then and there.
 
-	$.post(
-		"resources/edit_note.php",
-		{
-			title: noteTitle,
-			detail: noteDetails,
-			note_id: noteId
-		},
-
-		function(data, status){
-			
-			console.log("AJAX request was successful. Returning data");
-			
-			// AJAX request was successful
-
-		}).fail(function(){
-
-			console.log("There was an issue with the ajax request. Perhaps there is no connection to the server or the page requested is not present");
-			// Do Something is there is a failure
-		});
+	$.ajax({
+		type: "POST",
+		url: "resources/edit_note.php",
+		data: {title: noteTitle, detail: noteDetails, note_id: noteId},
+		timeout: 2000,
+		error: function(JqXHR, testStatus, errorThrown) {
+			alert("There was an issue connecting to the database")
+		}
+	});
 }
 
 note.EmployeeSearch = function(keyword){

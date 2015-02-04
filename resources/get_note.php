@@ -7,7 +7,7 @@
 //For now I will make it so that if there is a failure. The information will not show
 
 
-include("config.php");
+require("config.php");
 
 
 try {
@@ -17,6 +17,7 @@ try {
 
 } catch (exception $e) {
 	echo "There was a problem connecting to the database";
+	var_dump($e);
 	exit;
 
 }
