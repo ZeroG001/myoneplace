@@ -30,7 +30,8 @@ try {
 	echo $db->lastInsertId();
 
 } catch (exception $e) {
-	echo "there was a problem querying the database. Your Data will not be saved.";
+	echo "There was a problem connecting to the database. The note will not be added.";
+	exit;
 }
 
 $db = null;
