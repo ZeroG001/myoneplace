@@ -4,6 +4,58 @@
 
 //This function allows me to escape text
 
+(function(){
+
+
+var app = angular.module('myOnePlace', []);
+
+app.controller('MainCtrl', function($scope){
+
+});
+
+app.directive('noteCreator', function(){
+	return {
+		restrict: "E",
+		templateUrl: "templates/noteCreator.html",
+
+		//require: "ngModel",
+		link: function($scope, $element, $attrs){
+			console.log($element);
+
+		}
+	}
+
+});
+
+app.directive('noteEntry', function($http){
+
+	return {
+		restrict: "E",
+		templateUrl: "templates/noteEntry.html",
+
+		//require: "ngModel",
+		link: function($scope, $element, $attrs){
+
+			$scope.notes = [];
+
+			$http.get('resources/get_note.json.php')
+				.success(function ( data ) {
+					$scope.notes = data;
+					console.log(data);
+				});
+
+			
+			console.log($element);
+
+		}
+	}
+
+});
+
+
+
+})();
+
 
 
 

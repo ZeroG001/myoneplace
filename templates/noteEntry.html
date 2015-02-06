@@ -1,0 +1,8 @@
+<div class='item note-container' ng-repeat="note in notes">
+	<div class='note-wrapper' style='background-color: white'>
+	<div class='note-title'> {{note.title}} </div>
+	<div class='note-detail'> {{note.note}} </div> 
+	<div class='note-options'> Color | <button class='edit-note-modal btn btn-default btn-sm' data-toggle='modal' data-target='#myModal'>Edit</button>|
+	<button class='btn btn-default btn-sm btn-sm delete-note'> Delete </button> </div>
+	</div>
+</div>
